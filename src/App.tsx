@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseList from "./components/ExpenseList";
 
 function App() {
@@ -32,6 +33,16 @@ function App() {
         setExpenses(expenses.filter((item) => item !== obj));
     };
 
+    const filterExpenses = (filter: string) => {
+        setExpenses(
+            expenses.map((item) =>
+                item.category === filter || filter === ""
+                    ? { ...item, show: true }
+                    : { ...item, show: false }
+            )
+        );
+    };
+
     return (
         <>
             <div className="container">
@@ -45,6 +56,11 @@ function App() {
                             <h4 className="mb-3 text-primary">New expense:</h4>
                         </div>
                         <div className="col-md-7 col-lg-8">
+                            <ExpenseFilter
+                                categories={expenseCategory}
+                                onChange={filterExpenses}
+                            />
+
                             <ExpenseList
                                 items={expenses}
                                 onDelete={deleteExpenses}

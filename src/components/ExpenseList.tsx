@@ -28,7 +28,7 @@ const ExpenseList = ({ items, onDelete }: Props) => {
                             item.show && (
                                 <tr key={item.description}>
                                     <th scope="row">{item.description}</th>
-                                    <td>{item.amount}</td>
+                                    <td>${item.amount}.00</td>
                                     <td>{item.category}</td>
                                     <td>
                                         <button
