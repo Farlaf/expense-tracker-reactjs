@@ -9,7 +9,7 @@ const ExpenseFilter = ({ categories, onChange }: Props) => {
             <select
                 className="form-select"
                 id="floatingSelect"
-                aria-label="Floating label select example"
+                aria-label="Choose categories"
                 defaultValue=""
                 onChange={(e) => onChange(e.target.value)}
             >

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ExpenseFilter from "./components/ExpenseFilter";
+import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
 function App() {
@@ -43,6 +44,11 @@ function App() {
         );
     };
 
+    const addExpense = (d: {}) => {
+        console.log(d);
+        setExpenses([...expenses, { ...d, show: true }]);
+    };
+
     return (
         <>
             <div className="container">
@@ -54,6 +60,10 @@ function App() {
                     <div className="row g-5">
                         <div className="col-md-5 col-lg-4 order-md-last">
                             <h4 className="mb-3 text-primary">New expense:</h4>
+                            <ExpenseForm
+                                categories={expenseCategory}
+                                addExpense={addExpense}
+                            />
                         </div>
                         <div className="col-md-7 col-lg-8">
                             <ExpenseFilter
