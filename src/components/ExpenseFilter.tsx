@@ -1,11 +1,12 @@
+import categories from "./categories";
 interface Props {
-    categories: string[];
+    title: string;
     onChange: (category: string) => void;
 }
 
-const ExpenseFilter = ({ categories, onChange }: Props) => {
+const ExpenseFilter = ({ title, onChange }: Props) => {
     return (
-        <div className="form-floating">
+        <div className="form-floating mb-3">
             <select
                 className="form-select"
                 id="floatingSelect"
@@ -13,7 +14,7 @@ const ExpenseFilter = ({ categories, onChange }: Props) => {
                 defaultValue=""
                 onChange={(e) => onChange(e.target.value)}
             >
-                <option value="">All Categories</option>
+                <option value="">{title}</option>
                 {categories.map((item) => (
                     <option key={item} value={item}>
                         {item}

@@ -7,10 +7,12 @@ interface Expense {
 
 interface Props {
     items: Expense[];
-    onDelete: (obj: object) => void;
+    onDelete: (description: string) => void;
 }
 
 const ExpenseList = ({ items, onDelete }: Props) => {
+    if (items.length === 0) return null;
+
     return (
         <>
             <table className="table">
@@ -34,7 +36,9 @@ const ExpenseList = ({ items, onDelete }: Props) => {
                                         <button
                                             type="button"
                                             className="btn btn-outline-danger"
-                                            onClick={() => onDelete(item)}
+                                            onClick={() =>
+                                                onDelete(item.description)
+                                            }
                                         >
                                             Delete
                                         </button>
@@ -47,12 +51,13 @@ const ExpenseList = ({ items, onDelete }: Props) => {
                         <th scope="row">Total</th>
                         <td colSpan={3}>
                             $
-                            {items.reduce(
-                                (summ, item) =>
-                                    item.show ? summ + item.amount : summ,
-                                0
-                            )}
-                            .00
+                            {items
+                                .reduce(
+                                    (summ, item) =>
+                                        item.show ? summ + item.amount : summ,
+                                    0
+                                )
+                                .toFixed(2)}
                         </td>
                     </tr>
                 </tbody>
